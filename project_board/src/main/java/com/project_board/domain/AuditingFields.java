@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @ToString
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+
 public abstract class AuditingFields {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -31,7 +32,7 @@ public abstract class AuditingFields {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
-    @Column(nullable = false)
+
     protected LocalDateTime modifiedAt; // 수정일시
 
     @LastModifiedBy
