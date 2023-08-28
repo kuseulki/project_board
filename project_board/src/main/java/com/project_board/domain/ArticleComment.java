@@ -17,12 +17,11 @@ import java.util.Objects;
 @ToString
 @Table(indexes = {
         @Index(columnList = "content"),
-        @Index(columnList = "createAt"),
-        @Index(columnList = "createBy")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends AuditingFields {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,23 +32,7 @@ public class ArticleComment {
 
     @Setter
     private String content; // 본문
-
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createAt; // 생성일시
-
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private String createBy;    // 생성자
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt;   // 수정일시
-
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy;  // 수정자
-
+    
     protected ArticleComment() {}
 
     private ArticleComment(Article article, String content) {
